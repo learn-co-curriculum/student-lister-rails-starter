@@ -1,1 +1,14 @@
 <h1>Create a Student</h1>
+
+<%= form_for @student, html: { class: 'ui form' } do |f| %>
+  <div class='field'>
+    <%= f.text_field :name, placeholder: 'Enter student name...' %>
+  </div>
+  <div class='field'>
+    <%= f.text_field :email, placeholder: 'Enter student email...' %>
+  </div>
+  <div class='field'>
+    <%= f.date_field :dob %>
+  </div>
+  <%= f.submit %>
+<% end %>
