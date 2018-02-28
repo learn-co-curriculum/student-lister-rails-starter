@@ -1,10 +1,12 @@
 class StudentsController < ApplicationController
   def index
     @students = Student.all
+    # render :index
   end
 
   def show
     @student = Student.find_by(id: params[:id])
+    # render :show
   end
 
   def new
@@ -12,13 +14,18 @@ class StudentsController < ApplicationController
   end
 
   def create
-    Student.create(student_params)
-    redirect_to students_path
+    @student = Student.new(student_params)
+    if @student.save
+      redirect_to students_path
+    else
+      # redirect_to new_students_path
+      render :new
+    end
   end
 
   private
 
   def student_params
-    params.require(:student).permit(:name, :email, :dob)
+    params.require(:student).permit(:name, :email, :dob, :cohort_id)
   end
 end
